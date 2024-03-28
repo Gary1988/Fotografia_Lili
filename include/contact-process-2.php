@@ -1,6 +1,6 @@
 <?php
 
-$recipient = 'garymontesu@gmail.com';
+$recipient = 'gary.montenegro@gaminghub.lat';
 $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
