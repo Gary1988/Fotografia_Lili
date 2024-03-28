@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Aquí puedes procesar los datos, como enviar un email o guardarlos en una base de datos.
     // Por ejemplo, para enviar un correo electrónico podrías usar la función mail() de PHP:
-    $para = 'tuemail@example.com'; // Cambia esto por tu dirección de correo electrónico
+    $para = 'garymontesu@gmail.com'; // Cambia esto por tu dirección de correo electrónico
     $asunto = 'Nuevo mensaje de mi sitio web';
     $contenido = "Has recibido un nuevo mensaje de: $nombre\n".
                  "Email: $email\n".
