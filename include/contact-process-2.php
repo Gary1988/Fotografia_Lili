@@ -1,20 +1,31 @@
 <?php
-// enviar.php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
 
-    // Aquí puedes procesar los datos, como enviar un email o guardarlos en una base de datos.
-    // Por ejemplo, para enviar un correo electrónico podrías usar la función mail() de PHP:
-    $para = 'garymontesu@gmail.com'; // Cambia esto por tu dirección de correo electrónico
-    $asunto = 'Nuevo mensaje de mi sitio web';
-    $contenido = "Has recibido un nuevo mensaje de: $nombre\n".
-                 "Email: $email\n".
-                 "Mensaje:\n$mensaje";
+$recipient = 'garymontesu@gmail.com';
+$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+$subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
+$message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
 
-    // Asegúrate de que el servidor soporte la función mail y de configurar correctamente los encabezados.
-    // mail($para, $asunto, $contenido);
+if ($email) {
+    $msg = 'E-mail address is valid';
+    $ip = getenv('REMOTE_ADDR');
+    $host = gethostbyaddr($ip);	
+    $mess = "Name: ".$name."\n";
+    $mess .= "Email: ".$email."\n";
+    $mess .= "Message: ".$message."\n\n";
+    $mess .= "IP:".$ip." HOST: ".$host."\n";
+    
+    // Validar que los campos del encabezado no contengan caracteres adicionales que puedan ser explotados
+    if (strpos($email, "\r") === false && strpos($email, "\n") === false) {
+        $headers = "From: <".$email.">\r\n"; 
+        if(isset($_POST['url']) && $_POST['url'] == ''){
+            $sent = mail($recipient, $subject, $mess, $headers); 
+        } 
+    } else {
+        $msg = 'Invalid header';
+    }
+} else {
+    $msg = 'Invalid email address';
 }
+
 ?>
