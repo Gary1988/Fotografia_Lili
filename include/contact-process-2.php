@@ -1,9 +1,10 @@
 <?php
 // enviar.php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
+    $name = $_POST['name'];
     $email = $_POST['email'];
-    $mensaje = $_POST['mensaje'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
     // Aquí puedes procesar los datos, como enviar un email o guardarlos en una base de datos.
     // Por ejemplo, para enviar un correo electrónico podrías usar la función mail() de PHP:
